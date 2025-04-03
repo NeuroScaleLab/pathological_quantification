@@ -2,8 +2,8 @@
 
 This repository contains several scripts to perform QuPath digital pathological qantification of immunohistochemical (IHC) stainings:
 - Alphasynuclein (pSer129) with EP1536Y antibody (Abcam)
-      * Lewy bodies (count) and remaining alpha-synuclein pathology (% area) in the substantia nigra
-      * Lewy Bodies (count) and remaining alpha-synuclein pathology (% area) in the cortex
+- - Lewy bodies (count) and remaining alpha-synuclein pathology (% area) in the substantia nigra
+- - Lewy Bodies (count) and remaining alpha-synuclein pathology (% area) in the cortex
 - Amyloid-beta with 4G8 antibody (Biolegends)
 - Neurofilament light (NfL) immunoreactivity with NfL antibody (synaptic systems)
 - Hyperphosphorylated tau (p-tau) with AT8 antibody (ThermoFisher)
