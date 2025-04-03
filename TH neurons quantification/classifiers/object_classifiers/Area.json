@@ -1,0 +1,32 @@
+{
+  "object_classifier_type": "SimpleClassifier",
+  "function": {
+    "classifier_fun": "ClassifyByMeasurementFunction",
+    "measurement": "Nucleus: Area",
+    "pathClassBelow": {
+      "name": "Background",
+      "colorRGB": 1577045224
+    },
+    "pathClassEquals": {
+      "name": "Neuromelanin",
+      "colorRGB": -16744448
+    },
+    "pathClassAbove": {
+      "name": "Neuromelanin",
+      "colorRGB": -16744448
+    },
+    "threshold": 280.0
+  },
+  "pathClasses": [
+    {
+      "name": "Background",
+      "colorRGB": 1577045224
+    },
+    {
+      "name": "Neuromelanin",
+      "colorRGB": -16744448
+    }
+  ],
+  "filter": "DETECTIONS_ALL",
+  "timestamp": 1620308260693
+}

@@ -1,0 +1,254 @@
+{
+  "pixel_classifier_type": "OpenCVPixelClassifier",
+  "metadata": {
+    "inputPadding": 0,
+    "inputResolution": {
+      "pixelWidth": {
+        "value": 0.499913003412055,
+        "unit": "µm"
+      },
+      "pixelHeight": {
+        "value": 0.499913003412055,
+        "unit": "µm"
+      },
+      "zSpacing": {
+        "value": 1.0,
+        "unit": "z-slice"
+      },
+      "timeUnit": "SECONDS",
+      "timepoints": []
+    },
+    "inputWidth": 512,
+    "inputHeight": 512,
+    "inputNumChannels": 3,
+    "outputType": "CLASSIFICATION",
+    "outputChannels": [
+      {
+        "name": "Background",
+        "color": 1727319023
+      },
+      {
+        "name": "Neuromelanin",
+        "color": -16744448
+      },
+      {
+        "name": "TH threads",
+        "color": -15466241
+      }
+    ],
+    "classificationLabels": {
+      "0": {
+        "name": "Background",
+        "colorRGB": 1727319023
+      },
+      "1": {
+        "name": "Neuromelanin",
+        "colorRGB": -16744448
+      },
+      "2": {
+        "name": "TH threads",
+        "colorRGB": -15466241
+      }
+    }
+  },
+  "op": {
+    "type": "data.op.channels",
+    "colorTransforms": [
+      {
+        "channelName": "Red"
+      },
+      {
+        "channelName": "Green"
+      },
+      {
+        "channelName": "Blue"
+      },
+      {
+        "stains": {
+          "name": "Vector SG grey - Fast red",
+          "stain1": {
+            "r": 0.6152767678458011,
+            "g": 0.6152767678458011,
+            "b": 0.49281740827455417,
+            "name": "Vector SG grey",
+            "isResidual": false
+          },
+          "stain2": {
+            "r": 0.24275991981577955,
+            "g": 0.7122597594594956,
+            "b": 0.6585997695002159,
+            "name": "Fast Red",
+            "isResidual": false
+          },
+          "stain3": {
+            "r": 0.13227376797287926,
+            "g": -0.6968710839494388,
+            "b": 0.7048931427254709,
+            "name": "Residual",
+            "isResidual": true
+          },
+          "maxRed": 255.0,
+          "maxGreen": 255.0,
+          "maxBlue": 255.0
+        },
+        "stainNumber": 1
+      }
+    ],
+    "op": {
+      "type": "op.core.sequential",
+      "ops": [
+        {
+          "type": "op.core.sequential",
+          "ops": [
+            {
+              "type": "op.core.split-merge",
+              "ops": [
+                {
+                  "type": "op.multiscale",
+                  "features": [
+                    "GAUSSIAN",
+                    "HESSIAN_DETERMINANT"
+                  ],
+                  "sigmaX": 0.5,
+                  "sigmaY": 0.5
+                }
+              ]
+            },
+            {
+              "type": "op.feature-preprocessor",
+              "preprocessor": {
+                "normalizer": {
+                  "offsets": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "scales": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "missingValue": 0.0
+                },
+                "inputLength": 8,
+                "outputLength": 8
+              }
+            }
+          ]
+        },
+        {
+          "type": "op.opencv-statmodel",
+          "model": {
+            "class": "ANN_MLP",
+            "statmodel": {
+              "format": 3,
+              "layer_sizes": [
+                8,
+                3
+              ],
+              "activation_function": "SIGMOID_SYM",
+              "f_param1": 1.0,
+              "f_param2": 1.0,
+              "min_val": -9.4999999999999996e-01,
+              "max_val": 9.4999999999999996e-01,
+              "min_val1": -9.7999999999999998e-01,
+              "max_val1": 9.7999999999999998e-01,
+              "training_params": {
+                "train_method": "RPROP",
+                "dw0": 1.0000000000000001e-01,
+                "dw_plus": 1.2000000000000000e+00,
+                "dw_minus": 5.0000000000000000e-01,
+                "dw_min": 1.1920928955078125e-07,
+                "dw_max": 50.0,
+                "term_criteria": {
+                  "epsilon": 1.0000000000000000e-02,
+                  "iterations": 1000
+                }
+              },
+              "input_scale": [
+                1.3182581135417867e-02,
+                -2.3207321388022604e+00,
+                1.3357262132389008e-04,
+                -1.5356009013825191e+00,
+                1.7783592295202561e-02,
+                -2.4171132436091711e+00,
+                2.2978995580516678e-04,
+                -1.5555616953923932e+00,
+                1.6622128362438877e-02,
+                -2.5980347867771441e+00,
+                1.9342993922369649e-04,
+                -1.6967327451712801e+00,
+                2.2307376245372077e+00,
+                -7.0422055786147242e-01,
+                5.4843847710635316e+00,
+                -5.3858812074679652e-01
+              ],
+              "output_scale": [
+                1.0,
+                0.0,
+                1.0,
+                0.0,
+                1.0,
+                0.0
+              ],
+              "inv_output_scale": [
+                1.0,
+                0.0,
+                1.0,
+                0.0,
+                1.0,
+                0.0
+              ],
+              "weights": [
+                [
+                  7.8047785308277220e+00,
+                  2.6367345875581683e-01,
+                  -1.2590173407386316e+00,
+                  3.4156791400692690e+00,
+                  7.0680267919660078e-01,
+                  -1.3340738474712552e+00,
+                  1.4487639677228303e-01,
+                  -4.5984804897318615e-01,
+                  2.3546923313878181e+00,
+                  -3.1437018751217338e-01,
+                  -6.5210026304542246e-01,
+                  -7.1610767810407805e-01,
+                  -2.1838329994401828e-01,
+                  -1.5718289904083018e+00,
+                  2.6258262479021584e+00,
+                  3.5980933505820600e-03,
+                  -4.2250529831879846e-01,
+                  1.8168435438537550e-02,
+                  -2.3351408798901860e+00,
+                  -1.0370697737077443e+00,
+                  7.2362258728775535e+00,
+                  -2.0439466986356027e+00,
+                  -4.0616464662431678e-01,
+                  -1.7735542913382560e+00,
+                  -7.6982746658860535e-01,
+                  -3.3062639004095153e+00,
+                  -2.4474047834390408e-01
+                ]
+              ]
+            }
+          },
+          "requestProbabilities": false
+        },
+        {
+          "type": "op.core.convert",
+          "pixelType": "UINT8"
+        }
+      ]
+    }
+  }
+}

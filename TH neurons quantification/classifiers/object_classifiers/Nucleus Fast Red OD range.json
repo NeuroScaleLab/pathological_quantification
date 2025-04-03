@@ -1,0 +1,24 @@
+{
+  "object_classifier_type": "SimpleClassifier",
+  "function": {
+    "classifier_fun": "ClassifyByMeasurementFunction",
+    "measurement": "Nucleus: Fast Red OD range",
+    "pathClassEquals": {
+      "name": "Neurons",
+      "colorRGB": -10641169
+    },
+    "pathClassAbove": {
+      "name": "Neurons",
+      "colorRGB": -10641169
+    },
+    "threshold": 0.137
+  },
+  "pathClasses": [
+    {
+      "name": "Neurons",
+      "colorRGB": -10641169
+    }
+  ],
+  "filter": "DETECTIONS_ALL",
+  "timestamp": 1620379124509
+}

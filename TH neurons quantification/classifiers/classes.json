@@ -1,0 +1,31 @@
+{
+  "pathClasses": [
+    {
+      "name": "Unclassified"
+    },
+    {
+      "name": "error",
+      "color": -13564792
+    },
+    {
+      "name": "Neurons",
+      "color": -10641169
+    },
+    {
+      "name": "Neuromelanin",
+      "color": -16744448
+    },
+    {
+      "name": "Parent",
+      "color": -16711681
+    },
+    {
+      "name": "Training_image",
+      "color": -16129087
+    },
+    {
+      "name": "Intersections",
+      "color": -1127108
+    }
+  ]
+}
