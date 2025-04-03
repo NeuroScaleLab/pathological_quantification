@@ -1,0 +1,32 @@
+{
+  "object_classifier_type": "SimpleClassifier",
+  "function": {
+    "classifier_fun": "ClassifyByMeasurementFunction",
+    "measurement": "Nucleus: Min caliper",
+    "pathClassBelow": {
+      "name": "Background",
+      "colorRGB": 1577045224
+    },
+    "pathClassEquals": {
+      "name": "Lewy Body",
+      "colorRGB": -65536
+    },
+    "pathClassAbove": {
+      "name": "Lewy Body",
+      "colorRGB": -65536
+    },
+    "threshold": 8.3
+  },
+  "pathClasses": [
+    {
+      "name": "Background",
+      "colorRGB": 1577045224
+    },
+    {
+      "name": "Lewy Body",
+      "colorRGB": -65536
+    }
+  ],
+  "filter": "DETECTIONS_ALL",
+  "timestamp": 1619790097627
+}

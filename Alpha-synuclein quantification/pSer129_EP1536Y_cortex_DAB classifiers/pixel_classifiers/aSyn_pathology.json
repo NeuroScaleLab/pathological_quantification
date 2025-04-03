@@ -1,0 +1,188 @@
+{
+  "pixel_classifier_type": "OpenCVPixelClassifier",
+  "metadata": {
+    "inputPadding": 0,
+    "inputResolution": {
+      "pixelWidth": {
+        "value": 0.499913003412055,
+        "unit": "µm"
+      },
+      "pixelHeight": {
+        "value": 0.499913003412055,
+        "unit": "µm"
+      },
+      "zSpacing": {
+        "value": 1.0,
+        "unit": "z-slice"
+      },
+      "timeUnit": "SECONDS",
+      "timepoints": []
+    },
+    "inputWidth": 512,
+    "inputHeight": 512,
+    "inputNumChannels": 3,
+    "outputType": "CLASSIFICATION",
+    "outputChannels": [
+      {
+        "name": "Background",
+        "color": 1573709567
+      },
+      {
+        "name": "aSyn pathology",
+        "color": -65536
+      }
+    ],
+    "classificationLabels": {
+      "0": {
+        "name": "Background",
+        "colorRGB": 1573709567
+      },
+      "1": {
+        "name": "aSyn pathology",
+        "colorRGB": -65536
+      }
+    }
+  },
+  "op": {
+    "type": "data.op.channels",
+    "colorTransforms": [
+      {
+        "stains": {
+          "name": "H-DAB default",
+          "stain1": {
+            "r": 0.6511112717767477,
+            "g": 0.7011913719134059,
+            "b": 0.29049057079268853,
+            "name": "Hematoxylin",
+            "isResidual": false
+          },
+          "stain2": {
+            "r": 0.2691706198738795,
+            "g": 0.5682413097337492,
+            "b": 0.7775917896356576,
+            "name": "DAB",
+            "isResidual": false
+          },
+          "stain3": {
+            "r": 0.6330421014233871,
+            "g": -0.7128614881593863,
+            "b": 0.3018048981124184,
+            "name": "Residual",
+            "isResidual": true
+          },
+          "maxRed": 255.0,
+          "maxGreen": 255.0,
+          "maxBlue": 255.0
+        },
+        "stainNumber": 2
+      }
+    ],
+    "op": {
+      "type": "op.core.sequential",
+      "ops": [
+        {
+          "type": "op.core.sequential",
+          "ops": [
+            {
+              "type": "op.core.split-merge",
+              "ops": [
+                {
+                  "type": "op.multiscale",
+                  "features": [
+                    "LAPLACIAN",
+                    "HESSIAN_EIGENVALUE_MIN"
+                  ],
+                  "sigmaX": 0.5,
+                  "sigmaY": 0.5
+                }
+              ]
+            },
+            {
+              "type": "op.feature-preprocessor",
+              "preprocessor": {
+                "normalizer": {
+                  "offsets": [
+                    0.0,
+                    0.0
+                  ],
+                  "scales": [
+                    1.0,
+                    1.0
+                  ],
+                  "missingValue": 0.0
+                },
+                "inputLength": 2,
+                "outputLength": 2
+              }
+            }
+          ]
+        },
+        {
+          "type": "op.opencv-statmodel",
+          "model": {
+            "class": "ANN_MLP",
+            "statmodel": {
+              "format": 3,
+              "layer_sizes": [
+                2,
+                2
+              ],
+              "activation_function": "SIGMOID_SYM",
+              "f_param1": 1.0,
+              "f_param2": 1.0,
+              "min_val": -9.4999999999999996e-01,
+              "max_val": 9.4999999999999996e-01,
+              "min_val1": -9.7999999999999998e-01,
+              "max_val1": 9.7999999999999998e-01,
+              "training_params": {
+                "train_method": "RPROP",
+                "dw0": 1.0000000000000001e-01,
+                "dw_plus": 1.2000000000000000e+00,
+                "dw_minus": 5.0000000000000000e-01,
+                "dw_min": 1.1920928955078125e-07,
+                "dw_max": 50.0,
+                "term_criteria": {
+                  "epsilon": 1.0000000000000000e-02,
+                  "iterations": 1000
+                }
+              },
+              "input_scale": [
+                2.9800037254807612e+00,
+                5.7719121006149199e-01,
+                5.0883197391208954e+00,
+                5.9875894171312172e-01
+              ],
+              "output_scale": [
+                1.0,
+                0.0,
+                1.0,
+                0.0
+              ],
+              "inv_output_scale": [
+                1.0,
+                0.0,
+                1.0,
+                0.0
+              ],
+              "weights": [
+                [
+                  3.9102258550295033e+00,
+                  -4.5427565078961729e+00,
+                  5.0502975555828673e+00,
+                  -5.7098838504976186e+00,
+                  6.8713109117228288e-01,
+                  -3.3819252424941815e-01
+                ]
+              ]
+            }
+          },
+          "requestProbabilities": false
+        },
+        {
+          "type": "op.core.convert",
+          "pixelType": "UINT8"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "pathClasses": [
+    {
+      "name": "Unclassified"
+    },
+    {
+      "name": "Lewy Body",
+      "color": -65536
+    },
+    {
+      "name": "Intracellular Lewy Body",
+      "color": -16777088
+    },
+    {
+      "name": "Extracellular Lewy Body",
+      "color": -16764160
+    },
+    {
+      "name": "aSyn Pathology",
+      "color": -16768082
+    },
+    {
+      "name": "Background",
+      "color": 1577045224
+    },
+    {
+      "name": "Neuromelanin",
+      "color": -16776961
+    },
+    {
+      "name": "Parent",
+      "color": -16711681
+    },
+    {
+      "name": "ROI",
+      "color": -10778580
+    }
+  ]
+}

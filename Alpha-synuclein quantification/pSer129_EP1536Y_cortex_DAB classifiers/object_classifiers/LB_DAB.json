@@ -1,0 +1,32 @@
+{
+  "object_classifier_type": "SimpleClassifier",
+  "function": {
+    "classifier_fun": "ClassifyByMeasurementFunction",
+    "measurement": "Nucleus: DAB OD mean",
+    "pathClassBelow": {
+      "name": "Background",
+      "colorRGB": 1573709567
+    },
+    "pathClassEquals": {
+      "name": "Lewy Body",
+      "colorRGB": -10790501
+    },
+    "pathClassAbove": {
+      "name": "Lewy Body",
+      "colorRGB": -10790501
+    },
+    "threshold": 0.24214604496955872
+  },
+  "pathClasses": [
+    {
+      "name": "Background",
+      "colorRGB": 1573709567
+    },
+    {
+      "name": "Lewy Body",
+      "colorRGB": -10790501
+    }
+  ],
+  "filter": "DETECTIONS_ALL",
+  "timestamp": 1621514309985
+}
